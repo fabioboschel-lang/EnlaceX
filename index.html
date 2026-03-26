@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil Moderno con LocalStorage</title>
+<style>
+
+
+
+
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    
+  }
+
+  body {
+    background: linear-gradient(-45deg, #a18cd1 );
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    
+  }
+
+  @keyframes gradientBG {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+  }
+
+  .container {
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction:column;
+    
+    
+    
+    
+  
+    
+
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .circular-selector {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #ffffffaa;
+    display:flex;
+    position:absolute;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top:200px ;
+    margin-left:50px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .circular-selector:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  }
+
+  .circular-selector img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .username-input {
+    width: 200px;
+    max-width: 90%;
+    padding: 14px 18px;
+    font-size: 20px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    text-align: center;
+    background-color: transparent;
+    color: #333;
+    transition: box-shadow 0.3s;
+    margin-top:200px;
+    margin-left:150px;
+    
+    position: absolute;
+    
+  
+  }
+  .cta{
+    display:none;
+  }
+  
+
+
+  .rect-selector {
+    width: 330px;
+    height: 500px;
+    background-color: #ffffffaa;
+    display: flex;
+    position: absolute;
+    margin-left:45px;
+    margin-top: 850px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    transition: transform 0.3s, box-shadow 0.3s;
+    outline: none;  
+  -webkit-tap-highlight-color: transparent;  
+  }
+
+  .rect-selector:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+  }
+
+  .rect-selector img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+  
+  
+  
+}
+.fullscreen input {
+  width: 80%;
+  font-size: 24px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.fullscreen button {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+
+
+
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 12px 0;
+
+  background: linear-gradient(
+    to right,
+rgba(78, 69, 122, 0.9),
+rgba(122, 79, 114, 0.9)
+  );
+
+  backdrop-filter: blur(10px);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+  z-index: 1000;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+
+}
+
+.nav-btn:hover,
+.nav-btn:active {
+  transform: scale(1.2);
+}
+
+/* Íconos */
+.icon {
+  width: 28px;
+  height: 28px;
+  fill: white;
+  transition: fill 0.2s;
+}
+
+/* Efecto al tocar */
+.nav-btn:hover .icon,
+.nav-btn:active .icon {
+  fill: #fffa;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Contenedor scrollable */
+/* Contenedor principal del feed */
+.feed-container {
+  height: 100vh;                   /* ocupa toda la pantalla */
+  overflow-y: scroll;              /* scroll vertical */
+  scroll-snap-type: y mandatory;   /* snap vertical obligatorio */
+  scroll-behavior: smooth;     
+  
+  
+  height: calc(100vh - 34px)
+}
+
+/* Grid que contiene todos los posts */
+.imagesGrid {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  
+}
+
+/* Cada post individual */
+.post {
+  position: relative;
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;  /* evita saltar múltiples posts */
+  overflow: hidden;          /* evita que los elementos sobresalgan */
+  height: calc(100vh - 89px)
+}
+
+/* Fondo borroso del post (efecto vidrio) */
+.post-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;       /* ocupa todo el post */
+  background-position: center;  /* centra la imagen */
+  filter: blur(2px) brightness(1); /* borroso y un poco oscuro */
+  z-index: 0;                   /* detrás de la imagen principal */
+  
+}
+
+/* Imagen principal del post */
+.feed-img {
+  position: relative;           /* encima del fondo borroso */
+  width: 100%;
+  height: 100%;                 /* ocupa todo el contenedor del post */
+  object-fit: contain;          /* mantiene la proporción completa */
+  z-index: 1;                   /* encima del fondo borroso */
+
+}
+.lkeBtn {
+  position: absolute;           /* posicionamiento relativo al post */
+  bottom: 100px;                /* altura desde la base del post */
+  right: 10px;                  /* distancia desde la derecha */
+  z-index: 333;                   /* encima de imagen y texto */
+  
+  background: none;             /* sin fondo */
+  border: none;                 /* sin borde */
+  font-size: 28px;              /* tamaño del corazón */
+  cursor: pointer;
+  
+  transition: transform 0.1s ease, opacity 0.1s ease, filter 0.1s ease;
+  -webkit-tap-highlight-color: transparent; /* evita efecto de toque en móviles */
+}
+
+.likeBtn:active {
+  transform: scale(1.2);        /* efecto de "clic" */
+  filter: drop-shadow(0 0 5px red);
+}
+
+/* Texto del post */
+.post-text {
+  position: absolute;
+  
+  color: white;
+  font-size: 18px;
+  z-index: 2; /* encima de la imagen */
+}
+
+/* Texto del post */
+
+  
+  
+  
+  
+  
+
+ 
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    -200deg,
+    #ff9a9e,
+    #a18cd1
+  );
+
+  z-index: 9999;
+
+  transition: opacity 0.5 ease;
+}
+
+.splash-logo {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-left:150px;
+  margin-top:10px;
+}
+.splash-subtext{
+  color: gray;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-left: 20px;
+  
+}
+
+
+
+
+
+
+
+.post img.feed-img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Bailarías.css */
+
+/* Estado 1 */
+
+</style>
+<link rel="stylesheet" href="./Bailarias.css">
+
+<link rel="stylesheet" href="./Cruzarias.css">
+
+<link rel="stylesheet" href="./Conocerias.css">
+
+
+
+
+<link rel="stylesheet" href="./Corazones.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+  <div id="splash-screen">
+  <div class="splash-content">
+    <h1 class="splash-logo">WElink</h1>
+    <p class="splash-subtext">Conecta con otros en eventos de tu ciudad.</p>
+  </div>
+</div>
+
+<div id="app"></div>
+
+<div id="nav"></div>
+
+
+
+<script type="module" src="app.js"></script>
+
+
+</body>
+</html>
