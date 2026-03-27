@@ -368,6 +368,32 @@ body {
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
+  
+  
+}
+.Flyerbox {
+  position: relative;      /* 🔥 ahora top funciona */
+  margin-top: 100px;        /* 👈 lo baja desde arriba */
+
+  width: 85%;              /* no ocupa todo */
+  max-width: 400px;        /* límite pro */
+
+  aspect-ratio: 16 / 9;    /* 👈 forma correcta */
+  
+  margin-left: auto;
+  margin-right: auto;      /* centrado */
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  /* estética pro */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.flyerimg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* 👈 esto elimina bordes negros */
 }
 </style>
 <link rel="stylesheet" href="./Bailarias.css">

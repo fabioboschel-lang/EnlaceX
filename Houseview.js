@@ -6,7 +6,9 @@ export async function Houseview(app) {
   app.innerHTML = `
   
   <div class="paybuttom">
+  <a href="https://mpago.la/21xn9GS"target="_blank class="paybuttom">
   <h1 class="paytext">Obtener ticket</h1>
+</a>
   </div>
     
     <div class="countdown-container">
