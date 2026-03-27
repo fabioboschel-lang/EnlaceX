@@ -1,5 +1,5 @@
 import { ProfileView } from './Profileview.js';
-
+import {Houseview} from  './Houseview.js';
 import { FeedView } from './Feedview.js';
 import { initNavigation } from './navigate.js';
 
@@ -29,6 +29,11 @@ export function navigate(view){
   if(view === "feed"){
     FeedView(app);
   }
+  
+  if(view === "house"){
+    Houseview(app);
+  }
+
 
 }
 
@@ -39,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
    
    initNavigation();
    
-  navigate("profile");
+  navigate("house");
   
   
   
