@@ -102,11 +102,77 @@ white-space: nowrap;
   animation: pulse 2s infinite alternate;
 }
 
+
+
+
+
+
+  
+  .match-scroll {
+  display: flex;
+  overflow-x: auto;
+  background: transparent;
+  
+  scroll-snap-type: x mandatory;
+  
+  margin-top: 100px;
+  height: 150px; /* asegura que el contenedor tenga altura suficiente */
+  
+  gap: 0px;
+}
+
+.match-card {
+  width: 100%; /* ancho fijo para scroll tipo carrusel */
+  flex-shrink: 0; /* evita que se achique al hacer scroll */
+  background:transparent;
+  border-radius: 0px;
+  
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  scroll-snap-align: start;
 }
 
 
-      
-
-
+.match-text {
+  font-family: 'Anton', sans-serif;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
   
+
+  background: linear-gradient(45deg, #ff6ec7, #fff700, #00b0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.match-images {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  justify-content: center; 
+}
+
+.match-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
   
+
+  border: 2px solid rgba(255,255,255,0.2);
+}
+}
+
+.match-images {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.match-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 2px solid rgba(255,255,255,0.2);
+    }
