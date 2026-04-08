@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
    
    initNavigation();
    
-  navigate("house");
+  navigate("feed");
   
   
   
