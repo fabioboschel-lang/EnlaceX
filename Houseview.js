@@ -303,4 +303,4 @@ async function renderMatches() {
   }
 
   console.log("🏁 renderMatches END");
-                           }
+}

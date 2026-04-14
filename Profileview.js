@@ -1,4 +1,5 @@
 import { supabase } from "./supabase.js";
+import { navigate } from "./app.js";
 
 export function ProfileView(app) {
 
@@ -20,11 +21,17 @@ export function ProfileView(app) {
     </div>
 
     <input type="file" id="rectInput" accept="image/*">
+    
+    <div class="back-arrow" id="backArrow">&#8592;</div>
 
   </div>
   `;
+  const volver = document.getElementById("backArrow");
+  volver.addEventListener("click", () => {
+    navigate("mensajes");
+  });
   
-
+  
   // Elementos
   const circularSelector = document.getElementById('circularSelector');
   const circularImg = document.getElementById('circularImg');

@@ -12,7 +12,7 @@ export function initNavigation(){
     <path d="M256 464s-16-14.8-70-68.3C88.5 331 32 271.5 32 192 32 120 88 64 160 64c48 0 80 32 96 64 16-32 48-64 96-64 72 0 128 56 128 128 0 79.5-56.5 139-154 203.7-54 53.5-70 68.3-70 68.3z" />
   </svg>
 </button>
-  <button id="nav-profile" class="nav-btn">
+  <button id="nav-mensajes" class="nav-btn">
   <svg viewBox="0 0 24 24" class="icon">
     <!-- Triángulo principal con bordes redondeados -->
     <path d="M2 21 Q2 21 2 3 L22 12 Z"  stroke="none" stroke-linejoin="round"/>
@@ -37,7 +37,7 @@ export function initNavigation(){
 
   `;
 
-  const profileBtn = document.getElementById("nav-profile");
+  const profileBtn = document.getElementById("nav-mensajes");
   const feedBtn = document.getElementById("nav-feed");
   const houseBtn = document.getElementById("nav-house");
   
@@ -46,7 +46,7 @@ export function initNavigation(){
   
 
   profileBtn.addEventListener("click", () => {
-    navigate("profile");
+    navigate("mensajes");
   });
 
   feedBtn.addEventListener("click", () => {

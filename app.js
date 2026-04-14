@@ -1,7 +1,11 @@
-import { ProfileView } from './Profileview.js';
-import {Houseview} from  './Houseview.js';
 import { FeedView } from './Feedview.js';
+import { Houseview } from './Houseview.js';
+import { Mensajes } from './Mensajes.js';
+import { Chat } from './Chat.js';
+import { ProfileView } from './Profileview.js';
 import { initNavigation } from './navigate.js';
+
+const app = document.getElementById("app"); // 👈 FALTABA ESTO
 
 window.addEventListener("load", () => {
   setTimeout(() => {
@@ -18,12 +22,16 @@ window.addEventListener("load", () => {
   }, 1500);
 });
 
-const app = document.getElementById("app");
+export function navigate(view, params = {}) {
 
-export function navigate(view){
+  const nav = document.getElementById("nav");
+  if (nav) {
+    nav.style.display = (view === "chat") ? "none" : "block";
+  }
 
-  if(view === "profile"){
-    ProfileView(app);
+
+  if(view === "mensajes"){
+    Mensajes(app);
   }
 
   if(view === "feed"){
@@ -33,23 +41,19 @@ export function navigate(view){
   if(view === "house"){
     Houseview(app);
   }
-
-
+  
+  if(view === "profile"){
+    ProfileView(app);
+  }
+  
+  if(view === "chat"){
+    Chat(app, params); // 👈 correcto
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  
-   
-   
-   initNavigation();
-   
-  navigate("feed");
-  
-  
-  
-  
-  
-  
+  initNavigation();
+  navigate("mensajes");
 
 });
