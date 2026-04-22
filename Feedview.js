@@ -412,7 +412,7 @@ function crearBigHeart(wrapper, img, e) {
 
   // 🔹 Posición final: unos píxeles arriba del toque (disparo hacia arriba)
   const xEnd = xStart - 50;      
-  const yEnd = yStart - 200; // ajustar píxeles hacia arriba según gusto
+  const yEnd = yStart - 100; // ajustar píxeles hacia arriba según gusto
 
   const bigHeart = document.createElement("div");
   bigHeart.classList.add("bigHeartEffect");
