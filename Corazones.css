@@ -1,0 +1,88 @@
+.bigHeartEffect svg {
+  width: 100%;
+  height: 100%;
+  fill: url(#gradientHeart);
+  filter: drop-shadow(0 0 8px rgba(0,0,0,0.3));
+}
+
+.bigHeartEffect.show {
+  opacity: 1;
+  transform: translate(-50%, -65%) scale(1.2);
+}
+
+.bigHeartEffect {
+  position: absolute;
+  pointer-events: none;
+  width: 125px;
+  height: 125px;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%) scale(0.3);
+  
+}
+
+
+.like-btn {
+  width: 45px;
+  height: 45px;
+
+  position: absolute;
+  bottom: 100px;
+  right: 10px;
+
+  z-index: 10;
+  cursor: pointer;
+
+  background: none;
+  border: none;
+  outline: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform-origin: center;
+  transition: transform 0.15s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 🔹 SVG ocupa todo el espacio */
+.like-btn svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 🔴 LIKE ACTIVO */
+.like-activo svg path {
+  fill: #ff3040;
+  transition: fill 0.5s ease;
+  stroke: none;
+}
+
+/* ⚪ LIKE INACTIVO */
+.like-inactivo svg path {
+  fill: transparent;
+  stroke: white;
+  stroke-width: 20;
+}
+
+/* 🟣 LIKE BLOQUEADO */
+.like-bloqueado svg path {
+  fill: #9b3df0;
+  stroke: none;
+  transition: fill 1s ease, transform 0.5s ease;
+}
+
+/* 🔥 EFECTO CLICK */
+.like-btn:active {
+  transform: scale(1.2);
+  fill: #ff5;
+}
+}
+.like-btn:active.like-bloqueado svg path {
+  fill: #a25;
+}

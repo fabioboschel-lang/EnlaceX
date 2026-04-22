@@ -1,0 +1,195 @@
+/* ========================= */
+/* PROFILE / EDIT UI PRO */
+/* ========================= */
+
+/* selector circular avatar */
+.circular-selector {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 5%;
+  left: 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08));
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.18);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.35),
+    inset 0 1px 2px rgba(255,255,255,0.25);
+
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+
+  z-index: 20;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.circular-selector:hover,
+.circular-selector:active {
+  transform: scale(1.06);
+  border-color: rgba(255,255,255,0.32);
+
+  box-shadow:
+    0 16px 36px rgba(0,0,0,0.42),
+    inset 0 1px 2px rgba(255,255,255,0.28);
+}
+
+.circular-selector img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* username input */
+.username-input {
+  position: absolute;
+  top: 7%;
+  left: 25%;
+
+  width: calc(100% - 122px);
+  max-width: 200px;
+  height: 45px;
+
+  padding: 0 18px;
+
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 28px;
+  outline: none;
+
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+
+  backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.28),
+    inset 0 1px 1px rgba(255,255,255,0.08);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+
+  z-index: 15;
+}
+
+.username-input::placeholder {
+  color: rgba(255,255,255,0.45);
+}
+
+.username-input:focus {
+  border-color: rgba(255,255,255,0.28);
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,0.34),
+    0 0 0 3px rgba(255,255,255,0.06);
+
+  transform: translateY(-1px);
+}
+
+/* oculto */
+.cta {
+  display: none;
+}
+
+/* selector rectangular foto principal */
+.rect-selector {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 34px);
+  max-width:250px;
+  height: 380px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  cursor: pointer;
+  border-radius: 28px;
+
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.05));
+
+  backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255,255,255,0.14);
+
+  box-shadow:
+    0 18px 50px rgba(0,0,0,0.38),
+    inset 0 1px 2px rgba(255,255,255,0.12);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rect-selector:hover,
+.rect-selector:active {
+  transform: translateX(-50%) scale(1.015);
+  border-color: rgba(255,255,255,0.24);
+
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.46),
+    inset 0 1px 2px rgba(255,255,255,0.14);
+}
+
+.rect-selector img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* overlay elegante cuando no hay imagen */
+.rect-selector::after {
+  content: "Agregar foto";
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 10px 16px;
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  font-family: 'Montserrat', sans-serif;
+
+  color: white;
+  background: rgba(0,0,0,0.42);
+  backdrop-filter: blur(8px);
+}
+
+/* file hidden */
+input[type="file"] {
+  display: none;
+}
+
+/* back arrow premium */

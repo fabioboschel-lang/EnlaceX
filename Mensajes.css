@@ -1,0 +1,395 @@
+/* ===================== */
+/* 🌌 BASE */
+/* ===================== */
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, #1d2140 0%, #0b0d18 45%, #06070d 100%);
+  font-family: Inter, sans-serif;
+  color: white;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* quitar destello azul global mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+*:focus,
+*:active,
+*:focus-visible {
+  outline: none;
+}
+
+/* ===================== */
+/* 📦 CONTENEDOR CARDS */
+/* ===================== */
+
+.cards-container {
+  width: 90%;
+  max-width: 720px;
+  margin: 0 auto;
+
+  padding: 14px;
+  padding-top: 8px;
+  padding-bottom: 120px;
+}
+
+/* ===================== */
+/* 🃏 CARD ULTRA PRO */
+/* ===================== */
+
+.card {
+  position: relative;
+
+  width: 100%;
+  min-height: 78px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 15px;
+  margin-bottom: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(31,34,62,0.97),
+      rgba(17,19,36,0.97)
+    );
+
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 20px;
+
+  box-shadow:
+    0 10px 26px rgba(0,0,0,0.34),
+    0 2px 8px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.045);
+
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+/* borde envolvente premium */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(168,85,247,0.58),
+      rgba(255,255,255,0.04),
+      rgba(192,132,252,0.32),
+      rgba(168,85,247,0.18)
+    );
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+
+  pointer-events: none;
+  opacity: 0.92;
+}
+
+/* brillo superior */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,0.045),
+      transparent 26%,
+      transparent 72%,
+      rgba(255,255,255,0.018)
+    );
+}
+
+/* hover */
+.card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(255,255,255,0.085);
+
+  box-shadow:
+    0 18px 34px rgba(0,0,0,0.42),
+    0 4px 12px rgba(0,0,0,0.22),
+    0 0 18px rgba(168,85,247,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:active {
+  transform: scale(0.985);
+}
+
+/* ===================== */
+/* 🖼 FOTO PERFIL */
+/* ===================== */
+
+.card-img {
+  position: relative;
+
+  width: 56px;
+  height: 56px;
+
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  background-size: cover;
+  background-position: center;
+  background-color: #2b2f4a;
+
+  border: 2px solid rgba(255,255,255,0.07);
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,0.36),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.card-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.10),
+    transparent 45%
+  );
+}
+
+/* ===================== */
+/* 📝 CONTENIDO */
+/* ===================== */
+
+.card-content {
+  position: relative;
+
+  min-width: 0;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* nombre */
+.card-text {
+  color: rgba(255,255,255,0.96);
+
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.15px;
+  line-height: 1.15;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* mensaje */
+.card-subtext {
+  margin-top: 5px;
+
+  color: #a7afcf;
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===================== */
+/* ✨ HEADER MENSAJES PRO */
+/* ===================== */
+
+.mensajes-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  padding: 18px 16px 12px 16px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.55rem;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(11,13,24,0.96) 0%,
+      rgba(11,13,24,0.82) 58%,
+      rgba(11,13,24,0) 100%
+    );
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  text-shadow:
+    0 0 14px rgba(168,85,247,0.18),
+    0 2px 10px rgba(0,0,0,0.55);
+}
+
+/* gradiente texto */
+.mensajes-header {
+  background-image:
+    linear-gradient(
+      90deg,
+      #ffffff 0%,
+      #d8b4fe 45%,
+      #a855f7 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(11,13,24,0.96) 0%,
+      rgba(11,13,24,0.82) 58%,
+      rgba(11,13,24,0) 100%
+    );
+}
+
+/* línea premium */
+.mensajes-header::after {
+  content: "";
+  display: block;
+
+  width: 100%;
+  height: 1px;
+
+  margin-top: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(168,85,247,0.42),
+      rgba(255,255,255,0.16),
+      rgba(168,85,247,0.42),
+      transparent
+    );
+}
+
+/* ===================== */
+/* 📱 MOBILE */
+/* ===================== */
+
+@media (max-width: 420px) {
+
+  .cards-container {
+    padding: 12px;
+    padding-bottom: 110px;
+  }
+
+  .card {
+    min-height: 74px;
+    border-radius: 18px;
+    padding: 13px;
+  }
+
+  .card::before,
+  .card::after {
+    border-radius: 18px;
+  }
+
+  .card-img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .card-subtext {
+    font-size: 12.5px;
+  }
+
+  .mensajes-header {
+    font-size: 1.35rem;
+    padding: 16px 14px 10px 14px;
+    letter-spacing: 2px;
+  }
+}
+
+
+/* ===================== */
+/* ✨ ENTRADA SUAVE MENSAJES */
+/* ===================== */
+
+/* ===================== */
+/* ✨ ENTRADA SUAVE MENSAJES */
+/* ===================== */
+
+/* ===================== */
+/* ✨ ENTRADA SUAVE MENSAJES */
+/* ===================== */
+
+.suavemensajes{
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  animation: mensajesFadeIn .58s cubic-bezier(0.22,1,0.36,1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes mensajesFadeIn{
+
+  0%{
+    opacity: 0;
+    transform: translateY(28px) scale(.992);
+    filter: blur(3px);
+  }
+
+  18%{
+    filter: blur(0);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+
+}

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil Moderno con LocalStorage</title>
+<style>
+
+
+
+
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    
+  }
+
+body {
+  background: linear-gradient(-45deg, #2c2a4a, #4e457a, #7a4f72, #2c2a4a);
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+  margin: 0;
+  font-family: 'Anton', sans-serif;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+  .container {
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction:column;
+    
+    
+    
+    
+  
+    
+
+    justify-content: center;
+    gap: 30px;
+  }
+
+
+  
+}
+.fullscreen input {
+  width: 80%;
+  font-size: 24px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.fullscreen button {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Contenedor scrollable */
+/* Contenedor principal del feed */
+.feed-container {
+  height: 100vh;                   /* ocupa toda la pantalla */
+  overflow-y: scroll;              /* scroll vertical */
+  scroll-snap-type: y mandatory;   /* snap vertical obligatorio */
+  scroll-behavior: smooth;     
+  
+
+  
+}
+
+/* Grid que contiene todos los posts */
+.imagesGrid {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  
+}
+
+/* Cada post individual */
+.post {
+position: relative;
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;  /* evita saltar múltiples posts */
+       overflow: hidden;/* evita que los elementos sobresalgan */
+    height: calc(100vh - 89px)
+  
+}
+
+/* Fondo borroso del post (efecto vidrio) */
+.post-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;       /* ocupa todo el post */
+  background-position: center;  /* centra la imagen */
+  filter: blur(2px) brightness(1); /* borroso y un poco oscuro */
+  z-index: 0;                   /* detrás de la imagen principal */
+  
+}
+
+/* Imagen principal del post */
+.feed-img {
+  position: relative;           /* encima del fondo borroso */
+  width: 100%;
+  height: 100%;                 /* ocupa todo el contenedor del post */
+  object-fit: contain;          /* mantiene la proporción completa */
+  z-index: 1;                   /* encima del fondo borroso */
+
+}
+.lkeBtn {
+  position: absolute;           /* posicionamiento relativo al post */
+  bottom: 100px;                /* altura desde la base del post */
+  right: 10px;                  /* distancia desde la derecha */
+  z-index: 333;                   /* encima de imagen y texto */
+  
+  background: none;             /* sin fondo */
+  border: none;                 /* sin borde */
+  font-size: 28px;              /* tamaño del corazón */
+  cursor: pointer;
+  
+  transition: transform 0.1s ease, opacity 0.1s ease, filter 0.1s ease;
+  -webkit-tap-highlight-color: transparent; /* evita efecto de toque en móviles */
+}
+
+.likeBtn:active {
+  transform: scale(1.2);        /* efecto de "clic" */
+  filter: drop-shadow(0 0 5px red);
+}
+
+/* Texto del post */
+.post-text {
+  position: absolute;
+  
+  color: white;
+  font-size: 18px;
+  z-index: 2; /* encima de la imagen */
+}
+
+/* Texto del post */
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+.post img.feed-img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+#splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(-45deg, #0b0c2a, #1a1b4f, #2a2b6f);
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Contenedor de logo y textos */
+.splash-content {
+  text-align: top;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo minimalista */
+.splash-logo {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.circle {
+  border-radius: 50%;
+  background: linear-gradient(45deg, #ff6ec7, #00b0ff, #fff700);
+  width: 30px;
+  height: 30px;
+  animation: pulse 2.5s infinite alternate;
+}
+
+.circle.big {
+  width: 40px;
+  height: 40px;
+}
+
+/* Nombre de la app */
+.splash-text {
+  font-family: 'Anton', sans-serif;
+  font-size: 36px;
+  letter-spacing: 2px;
+  background: linear-gradient(45deg, #ff6ec7, #fff700, #00b0ff, #ff3d00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 2.5s infinite alternate;
+  margin: 0;
+}
+
+/* Subtexto profesional */
+.splash-subtext {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  color: #d0d0d0;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  max-width: 300px;
+  text-align: center;
+  line-height: 1.4;
+  opacity: 0.9;
+  animation: pulse 2.5s infinite alternate;
+}
+
+/* Pulso suave */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+  
+  
+}
+.Flyerbox {
+  position: relative;      /* 🔥 ahora top funciona */
+  margin-top: 100px;        /* 👈 lo baja desde arriba */
+
+  width: 85%;              /* no ocupa todo */
+  max-width: 400px;        /* límite pro */
+
+  aspect-ratio: 16 / 9;    /* 👈 forma correcta */
+  
+  margin-left: auto;
+  margin-right: auto;      /* centrado */
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  /* estética pro */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+.flyerimg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .50s ease;
+  display: block;
+}
+
+.flyerimg.loaded{
+  opacity: 1;
+}
+</style>
+<link rel="stylesheet" href="./Bailarias.css">
+
+<link rel="stylesheet" href="./Cruzarias.css">
+
+<link rel="stylesheet" href="./Conocerias.css">
+
+
+
+
+<link rel="stylesheet" href="./Corazones.css">
+
+
+
+<link rel="stylesheet" href="./Mensajes.css">
+
+<link rel="stylesheet" href="./Profile.css">
+
+
+<link rel="stylesheet" href="./Avioncito.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./House.css">
+
+<link rel="stylesheet" href="./Navegacion.css">
+
+<link rel="stylesheet" href="./Chat.css">
+
+</head>
+<body>
+<div id="splash-screen">
+  <div class="splash-content">
+    <!-- Logo minimalista con dos círculos -->
+    <div class="splash-logo">
+      <div class="circle big"></div>
+      <div class="circle small"></div>
+    </div>
+
+    <!-- Nombre de la app -->
+    <h1 class="splash-text">WeLink</h1>
+
+    <!-- Subtexto -->
+    <p class="splash-subtext">Conecta con otros en eventos de tu ciudad</p>
+  </div>
+</div>
+
+<div id="app"></div>
+
+<div id="nav"></div>
+
+
+
+<script type="module" src="app.js"></script>
+
+
+</body>
+</html>
