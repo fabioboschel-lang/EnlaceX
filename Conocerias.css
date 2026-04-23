@@ -157,7 +157,18 @@
 /* ===================== */
 /* SMALL DEVICES */
 /* ===================== */
+@media (max-width: 380px) {
 
+  .conocerias,
+  .tequiereconocer,
+  .seconoceran {
+    left: 12px;
+    bottom: 100px;
+    max-width: calc(100% - 24px);
+    white-space: normal;
+    line-height: 1.15;
+    padding: 9px 14px;
+    }
 
 
   .conocerias {
