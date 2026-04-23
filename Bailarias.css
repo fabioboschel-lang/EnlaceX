@@ -162,8 +162,8 @@
   .bailarias,
   .quierebailarconvos,
   .bailaran {
-    left: 12px;
-    bottom: 22px;
+    left: 30px;
+    bottom: 100px;
     max-width: calc(100% - 24px);
     white-space: normal;
     line-height: 1.15;
