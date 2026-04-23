@@ -152,8 +152,8 @@
   .cruzarias,
   .tequierecruzar,
   .secruzaran {
-    left: 10px;
-    bottom: 86px;
+    left: 30px;
+    bottom: 100px;
     max-width: calc(100% - 20px);
     white-space: normal;
     line-height: 1.2;
