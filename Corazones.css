@@ -13,8 +13,8 @@
 .bigHeartEffect {
   position: absolute;
   pointer-events: none;
-  width: 125px;
-  height: 125px;
+  width: 110px;
+  height: 110px;
   z-index: 999;
   display: flex;
   justify-content: center;
