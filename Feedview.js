@@ -412,7 +412,7 @@ function crearBigHeart(wrapper, img, e) {
 
   // 🔹 Destino: recto hacia arriba
   const xEnd = xStart;
-  const yEnd = yStart - 150;
+  const yEnd = yStart - 100;
 
   const bigHeart = document.createElement("div");
   bigHeart.classList.add("bigHeartEffect");
@@ -487,10 +487,10 @@ const dir =
 const gradientId =
   "gradientHeart-" + Date.now() + "-" + Math.floor(Math.random() * 99999);
 
-const finalRotations = [-10, 0, 10]; // izquierda, recto, derecha
+const finalRotations = [-25,-12,0, 25,12]; // izquierda, recto, derecha
 const finalRotation = finalRotations[Math.floor(Math.random() * finalRotations.length)];
 
-const size = 125;
+const size = 110;
   const half = size / 2;
 
   
@@ -592,4 +592,4 @@ bigHeart.animate(
     fill: "forwards"
   }
 );
-}
+        }
